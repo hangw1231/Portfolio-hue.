@@ -62,7 +62,7 @@ header nav {
 }
 
 #about .banner .formula ul li {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 #about .banner .formula ul li span {
@@ -76,11 +76,18 @@ header nav {
 /* aboutMe */
 #about .aboutMe {
     width: 100%;
-    padding: 70px 25px;
+    padding: 70px 0;
+}
+
+#about .aboutMe .introduce {
+    margin: 0 auto 40px;
+    width: calc(100% - 50px);
+    padding: 20px 10px;
 }
 
 #about .aboutMe .tagBox,
 #about .aboutMe .skillIcon {
+    padding: 0 25px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
