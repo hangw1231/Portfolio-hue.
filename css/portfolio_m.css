@@ -1,0 +1,261 @@
+@charset "utf-8";
+
+/* 공통영역 */
+.innerBox {
+    padding: 70px 25px;
+}
+
+.mainTitle {
+    font-size: 60px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+.btnArea {
+    gap: 10px;
+}
+#icoMenu {
+    cursor: url(../img/cursor.png) 8 8, auto !important;
+}
+
+/* header */
+header {
+    height: 70px;
+    padding: 0 25px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+header h1 {
+    font-size: 28px;
+    color: #16A1B1;
+}
+
+header nav {
+    display: none;
+}
+
+.theme-toggle img {
+    width: 22px;
+    height: 22px;
+}
+
+/* mainIntro */
+#mainIntro .mainText {
+    left: 25px;
+    bottom: 150px;
+}
+
+#mainIntro .mainText .subTitle {
+    font-size: 20px;
+}
+
+/* banner */
+#about .banner {
+    padding: 100px 25px;
+}
+
+#about .banner .mainTitle,
+#about .banner .formula {
+    margin-bottom: 50px;
+}
+
+#about .banner .formula ul li {
+    font-size: 20px;
+}
+
+#about .banner .formula ul li span {
+    font-size: 28px;
+}
+
+#about .banner .textArea .text span {
+    display: block;
+}
+
+/* aboutMe */
+#about .aboutMe {
+    width: 100%;
+    padding: 70px 25px;
+}
+
+#about .aboutMe .tagBox,
+#about .aboutMe .skillIcon {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+#about .aboutMe .skillIcon {
+    gap: 50px;
+}
+
+/* works */
+#works {
+    background: url(../img/bg05.png) no-repeat center/cover;
+}
+
+#works .workCard {
+    display: block;
+}
+
+#works h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#works .cardArea {
+    width: 100%;
+    height: clamp(250px, 60vh, 330px);
+    margin-bottom: 30px;
+}
+
+#works .cardArea h3 {
+    font-size: 20px;
+}
+
+#works .cardArea span {
+    font-size: 15px;
+}
+
+#works .workTextArea {
+    width: 100%;
+    text-align: center;
+}
+
+/* teamProject */
+#teamProject video {
+    width: auto;
+    height: 100%;
+}
+
+#teamProject h2 {
+    text-align: center;
+}
+
+#teamProject .btnArea {
+    margin-bottom: 20px;
+}
+
+#teamProject .textBox {
+    padding: 20px;
+    word-break: keep-all;
+}
+
+#teamProject .textBox li:first-child span {
+    display: block;
+}
+
+#teamProject .textBox li:first-child .slash {
+    display: none;
+}
+
+/* designWork */
+#designWork {
+    width: 100%;
+    height: fit-content;
+}
+
+#designWork .innerBox {
+    padding: 70px 0;
+}
+
+#designWork h2 {
+    margin: 0;
+    text-align: center;
+}
+
+#designWork .designUiCard ul {
+    padding: 0 25px;
+    display: flex;
+    align-items: center;
+}
+
+#designWork .designUiCard ul li {
+    flex: 0 0 auto;
+}
+
+/* contact */
+#contact .textArea {
+    width: calc(100vw - 50px);
+    height: fit-content;
+    position: absolute;
+    bottom: 100px;
+    display: block;
+}
+
+#contact .subTitle {
+    text-align: center;
+}
+
+#contact .information .subTitle::after {
+    width: 100%;
+}
+
+#contact .information dl {
+    justify-content: center;
+}
+
+#contact .lastText {
+    position: absolute;
+    width: 100%;
+    top: -230px;
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+}
+
+#contact .lastText span {
+    display: block;
+    margin-top: 7px;
+}
+
+/* nav_mobile */
+.mobile {
+    display: block;
+    position: fixed;
+    width: fit-content; height: fit-content;
+    text-align: center;
+    bottom: 50px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+.mobile img {
+    width: 24px; height: 24px;
+}
+.mobile .nav {
+    width: fit-content;
+    padding: 30px 25px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+    background: rgba(255,255,255,0.8);
+    font-weight: 500;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s;
+}
+.mobile .nav.on {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile .nav li a.active {
+    color: #16A1B1;
+}
+
+/* 다크모드 */
+body.dark header {
+    background: rgba(0, 0, 0, 0.8);
+}
+body.dark .mobile .nav {
+    background: rgba(0,0,0,0.7);
+}
+body.dark #icoMenu {
+    cursor: url(../img/cursor_d.png) 8 8, auto !important;
+}
