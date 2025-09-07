@@ -35,6 +35,7 @@ const icoIndesign = document.getElementById('icoIndesign');
 const icoPremierePro = document.getElementById('icoPremierePro');
 const icoAfterEffects = document.getElementById('icoAfterEffects');
 const icoMenu = document.getElementById('icoMenu')
+const icoGitHub = document.getElementById('icoGitHub')
 
 toggleBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark');
@@ -52,7 +53,47 @@ toggleBtn.addEventListener('click', () => {
     icoPremierePro.src = isDark ? 'img/ico_premiere_pro_d.png' : 'img/ico_premiere_pro.png';
     icoAfterEffects.src = isDark ? 'img/ico_after_effects_d.png' : 'img/ico_after_effects.png';
     icoMenu.src = isDark ? 'img/ico_menu_d.png' : 'img/ico_menu.png';
+    icoGitHub.src = isDark ? 'img/ico_github_d.png' : 'img/ico_github.png';
 });
+
+/* aboutMe - skills - flow 애니메이션 */
+(function () {
+    const original = document.querySelector('.skillIcon');
+    if (!original) return;
+
+    // 1) 뷰포트/트랙 생성
+    const viewport = document.createElement('div');
+    viewport.className = 'flowViewport';
+    const track = document.createElement('div');
+    track.className = 'flowTrack';
+
+    // DOM 재배치
+    original.parentNode.insertBefore(viewport, original);
+    viewport.appendChild(track);
+    track.appendChild(original);
+
+    // 2) 동일 UL 하나 더 복제(끊김 없는 루프용)
+    const clone = original.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true'); // 접근성: 중복 읽기 방지
+    track.appendChild(clone);
+
+    // 3) “절반 폭(=원본 UL 폭)” 기준으로 애니메이션 시간 계산
+    function recalc() {
+        const halfWidth = original.scrollWidth; // px
+        // viewport의 CSS 변수에서 속도 읽기
+        const pxPerSec = parseFloat(getComputedStyle(viewport).getPropertyValue('--px-per-sec')) || 40;
+        const duration = halfWidth / pxPerSec; // s
+        track.style.setProperty('--duration', duration + 's');
+    }
+
+    // 초기 1회 + 리사이즈 반영
+    requestAnimationFrame(recalc);
+    let rid;
+    window.addEventListener('resize', () => {
+        cancelAnimationFrame(rid);
+        rid = requestAnimationFrame(recalc);
+    });
+})();
 
 /* designWork - 마우스 드래그 스크롤 */
 (() => {
