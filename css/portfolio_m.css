@@ -87,14 +87,17 @@ header nav {
 
 #about .aboutMe .tagBox,
 #about .aboutMe .skillIcon {
-    padding: 0 25px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
 }
 
-#about .aboutMe .skillIcon {
+#about .aboutMe .tagBox {
+    padding: 0 25px;
+}
+
+.flowViewport, .flowTrack, .flowViewport .skillIcon {
     gap: 50px;
 }
 
@@ -200,8 +203,12 @@ header nav {
     width: 100%;
 }
 
-#contact .information dl {
+#contact .information dl div {
     justify-content: center;
+}
+
+#contact .information dl div dt {
+    display: none;
 }
 
 #contact .lastText {
