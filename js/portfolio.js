@@ -56,44 +56,85 @@ toggleBtn.addEventListener('click', () => {
     icoGitHub.src = isDark ? 'img/ico_github_d.png' : 'img/ico_github.png';
 });
 
-/* aboutMe - skills - flow 애니메이션 */
+
 (function () {
-    const original = document.querySelector('.skillIcon');
-    if (!original) return;
+  const original = document.querySelector('.skillIcon');
+  if (!original) return;
 
-    // 1) 뷰포트/트랙 생성
-    const viewport = document.createElement('div');
-    viewport.className = 'flowViewport';
-    const track = document.createElement('div');
-    track.className = 'flowTrack';
+  // 1) 뷰포트/트랙 생성 후 감싸기
+  const viewport = document.createElement('div');
+  viewport.className = 'flowViewport';
+  const track = document.createElement('div');
+  track.className = 'flowTrack';
 
-    // DOM 재배치
-    original.parentNode.insertBefore(viewport, original);
-    viewport.appendChild(track);
-    track.appendChild(original);
+  original.parentNode.insertBefore(viewport, original);
+  viewport.appendChild(track);
 
-    // 2) 동일 UL 하나 더 복제(끊김 없는 루프용)
-    const clone = original.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true'); // 접근성: 중복 읽기 방지
-    track.appendChild(clone);
+  // 2) 무한 루프용 복제본을 "앞"에 두고, 뒤에 원본을 둔다. [clone][original]
+  const clone = original.cloneNode(true);
+  clone.setAttribute('aria-hidden', 'true');
+  track.appendChild(clone);
+  track.appendChild(original);
 
-    // 3) “절반 폭(=원본 UL 폭)” 기준으로 애니메이션 시간 계산
-    function recalc() {
-        const halfWidth = original.scrollWidth; // px
-        // viewport의 CSS 변수에서 속도 읽기
-        const pxPerSec = parseFloat(getComputedStyle(viewport).getPropertyValue('--px-per-sec')) || 40;
-        const duration = halfWidth / pxPerSec; // s
-        track.style.setProperty('--duration', duration + 's');
-    }
+  // 3) 치수/속도 설정
+  let half = 0;              // 원본(한 줄) 폭(px)
+  let x = 0;                 // 현재 오프셋(px)  (항상 -half <= x < 0)
+  const speed = 40;          // px/s  (원하면 숫자만 바꾸면 됨)
+  let last = 0;
 
-    // 초기 1회 + 리사이즈 반영
-    requestAnimationFrame(recalc);
-    let rid;
-    window.addEventListener('resize', () => {
-        cancelAnimationFrame(rid);
-        rid = requestAnimationFrame(recalc);
+  function measure() {
+    // 이미지 로딩 이후 실제 폭 기준
+    half = original.scrollWidth;
+    // 시작 프레임을 "복제 한 줄만큼 왼쪽"에서 시작 → 화면은 '원본'으로 꽉 찬 상태
+    x = -half;
+    track.style.transform = `translateX(${x}px)`;
+  }
+
+  function animate(ts) {
+    if (!last) last = ts;
+    const dt = (ts - last) / 1000;
+    last = ts;
+
+    // 오른쪽(+)으로 이동
+    x += speed * dt;
+
+    // x가 0 이상이면 경계 통과 → half만큼 즉시 되감아 -half~0 구간 유지 (끊김 없음)
+    if (x >= 0) x -= half;
+
+    track.style.transform = `translateX(${x}px)`;
+    requestAnimationFrame(animate);
+  }
+
+  // 초기화: 로드 후 치수 확정 → 애니메이션 시작
+  function init() {
+    measure();
+    requestAnimationFrame(animate);
+  }
+
+  if (document.readyState === 'complete') {
+    init();
+  } else {
+    window.addEventListener('load', init, { once: true });
+  }
+
+  // 리사이즈 시 치수 재측정(현재 위치를 새 half 기준으로 보정)
+  let rAF;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(rAF);
+    rAF = requestAnimationFrame(() => {
+      const oldHalf = half;
+      measure();
+      // 진행률 유지: 이전 x를 비율로 환산해 새 half에 반영
+      if (oldHalf) {
+        const progress = (x + oldHalf) / oldHalf; // 0~1
+        x = -half + progress * half;
+        if (x >= 0) x -= half;
+        track.style.transform = `translateX(${x}px)`;
+      }
     });
+  });
 })();
+
 
 /* designWork - 마우스 드래그 스크롤 */
 (() => {
