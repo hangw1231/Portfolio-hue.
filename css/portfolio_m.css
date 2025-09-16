@@ -85,19 +85,30 @@ header nav {
     padding: 20px 10px;
 }
 
+#about .aboutMe .identify {
+    margin-bottom: 30px;
+}
+
+#about .aboutMe .identify h2 {
+    margin-bottom: 10px;
+}
+
+#about .aboutMe .skills h2 {
+    margin-bottom: 40px;
+}
+
 #about .aboutMe .tagBox,
 #about .aboutMe .skillIcon {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-}
-
-#about .aboutMe .tagBox {
     padding: 0 25px;
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
 }
 
-.flowViewport, .flowTrack, .flowViewport .skillIcon {
+#about .aboutMe .skills .skillIcon {
+    justify-content: flex-start;
     gap: 50px;
 }
 
