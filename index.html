@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - h u e.</title>
+    <link rel="icon" sizes="32x32" href="./img/favicon.png" type="image/png">
+    <meta property="og:title" content="Portfolio - h u e.">
+    <meta property="og:description" content="Jiwon's portfolio">
+    <meta property="og:image" content="https://hangw1231.github.io/Portfolio-hue./img/hue_thumbnail.png">
+    <meta property="og:url" content="https://hangw1231.github.io/Portfolio-hue./">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/portfolio.css">
+    <link rel="stylesheet" href="./css/portfolio_m.css" media="(max-width: 768px)">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="./js/portfolio.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <!-- header -->
+        <header>
+            <h1><a href="#">h u e.</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#works">Works</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="toggleTheme" class="theme-toggle"><img id="themeIcon" src="img/ico_dark.png"
+                    alt="다크모드 아이콘"></button>
+        </header>
+
+        <!-- Main Intro -->
+        <section id="mainIntro">
+            <div class="mainText">
+                <p class="mainTitle">h u e.</p>
+                <p class="subTitle">A visual web publishing portfolio by Jiwon Han<br>each line, colored with intent</p>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about">
+            <div class="banner">
+                <div class="textArea">
+                    <p class="mainTitle">h u e. <span>?</span></p>
+                    <div class="formula">
+                        <ul>
+                            <li>색조<br>빛깔</li>
+                            <li>+</li>
+                            <li>감각적<br>직관적<br>정체성</li>
+                            <li>=</li>
+                            <li><span>h u e.</span></li>
+                        </ul>
+                    </div>
+                    <p class="text">
+                        <span>"hue"란 단순한 색이 아니라, </span><span>개인이 만들어내는 경험의 톤 </span><span>즉, 고유의 색깔을 의미합니다.</span><br>
+                        <span>나만의 시각적인 감각과 사용자의 흐름을 고려한 </span><span>퍼블리싱 작업을 담아낸 포트폴리오 </span><span
+                            class="point">hue.</span>
+                    </p>
+                </div>
+            </div>
+            <div class="introduce">
+                <div class="topArea">
+                    <div class="identify">
+                        <h3>Design identify</h3>
+                        <div id="identifyList" class="identifyList">
+                            <ul id="keywords" class="keywords">
+                                <li class="word_box">
+                                    <strong>Aesthetic</strong><span>감각적인</span>
+                                </li>
+                                <li class="word_box">
+                                    <strong>Intuitive</strong><span>직관적인</span>
+                                </li>
+                                <li class="word_box">
+                                    <strong>On-trend</strong><span>트렌디한</span>
+                                </li>
+                                <li class="word_box">
+                                    <strong>Subtle</strong><span>차분한</span>
+                                </li>
+                                <li class="word_box">
+                                    <strong>Minimal</strong><span>미니멀한</span>
+                                </li>
+                                <li class="word_box">
+                                    <strong>Functional</strong><span>기능적인</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="highlight" class="highlight"></div>
+                    </div>
+                    <div class="my_story">
+                        <p class="name">
+                            <strong>Han Jiwon</strong><span>한 지원</span>
+                        </p>
+                        <p class="story">
+                            저는 예전부터 아름다운 것에 끌려 다양한 디자인 분야에 관심을 가져왔습니다.<br>
+                            전공은 세무회계학이었지만, 좋아하는 분야에 도전해보고 싶어 여성 의류 디자이너 브랜드에서 온라인 MD로 일하게 되었습니다.<br>
+                            업무를 하다 보니 패션보다는 화면을 구성하고 이미지를 다루는 시각적인 작업에 더 흥미를 느꼈고, 그때부터 디자인에 대한 관심이 본격적으로 커졌습니다.<br><br>
+                            제가 좋아하는 디자인은 단정하고 깔끔한 스타일입니다.<br>
+                            누구나 쉽게 이해할 수 있고, 오랫동안 질리지 않는 디자인을 추구합니다.<br>
+                            이런 취향 덕분에 사용자 입장에서 효율적으로 보기 좋은 화면을 만드는 일에 끌리게 되었고, 지금은 웹 퍼블리셔로서 그 방향으로 향해 나아가고 있습니다.<br><br>
+                            현재는 다양한 웹페이지를 직접 만들어보며 화면 하나를 완성할 때마다 배움의 즐거움을 느끼고 있습니다.<br>
+                            앞으로는 단순히 보기 좋은 화면을 만드는 것을 넘어, 사용자에게 편안한 경험을 주는 퍼블리셔로 성장하고 싶습니다!
+                        </p>
+                    </div>
+                </div>
+                <div class="skills">
+                    <h2>Skills</h2>
+                    <div class="skill_box">
+                        <div class="skill_card up">
+                            <span>HTML</span>
+                            <img src="./img/ico_html_d.png" alt="HTML 아이콘" class="skill_icon">
+                            <ul>
+                                <li>&middot; 구조 설계</li>
+                                <li>&middot; 시맨틱 마크업</li>
+                            </ul>
+                        </div>
+                        <div class="skill_card up">
+                            <span>CSS</span>
+                            <img src="./img/ico_css_d.png" alt="CSS 아이콘" class="skill_icon">
+                            <ul>
+                                <li>&middot; 반응형 레이아웃</li>
+                                <li>&middot; 스타일링</li>
+                            </ul>
+                        </div>
+                        <div class="skill_card up">
+                            <span>JavaScript</span>
+                            <img src="./img/ico_javascript_d.png" alt="JavaScript 아이콘" class="skill_icon">
+                            <ul>
+                                <li>&middot; 기본 인터랙션</li>
+                                <li>&middot; DOM 제어</li>
+                            </ul>
+                        </div>
+                        <div class="skill_card up">
+                            <span>React</span>
+                            <img src="./img/ico_react_d.png" alt="React 아이콘" class="skill_icon">
+                            <ul>
+                                <li>&middot; 컴포넌트 UI</li>
+                                <li>&middot; 상태 관리 기초</li>
+                            </ul>
+                        </div>
+                        <div class="skill_card up">
+                            <span>Figma</span>
+                            <img src="./img/ico_figma_d.png" alt="Figma 아이콘" class="skill_icon">
+                            <ul>
+                                <li>&middot; UI 구성</li>
+                                <li>&middot; 프로토타입</li>
+                            </ul>
+                        </div>
+                        <div class="skill_card down">
+                            <span>Photoshop</span>
+                            <img src="./img/ico_photoshop_d.png" alt="Photoshop 아이콘" class="skill_icon">
+                            <ul>
+                                <li>&middot; 보정 / 합성</li>
+                                <li>&middot; 배너 제작</li>
+                            </ul>
+                        </div>
+                        <div class="skill_card down">
+                            <span>Illustrator</span>
+                            <img src="./img/ico_illustrator_d.png" alt="Illustrator 아이콘" class="skill_icon">
+                            <ul>
+                                <li>&middot; 단순 벡터 그래픽</li>
+                                <li>&middot; 간단한 편집</li>
+                            </ul>
+                        </div>
+                        <div class="skill_card down">
+                            <span>InDesign</span>
+                            <img src="./img/ico_inDesign_d.png" alt="InDesign" class="skill_icon">
+                            <ul>
+                                <li>&middot; 페이지 구성</li>
+                                <li>&middot; 타이포 레이아웃</li>
+                            </ul>
+                        </div>
+                        <div class="skill_card down">
+                            <span>Premiere Pro</span>
+                            <img src="./img/ico_premiere_pro_d.png" alt="Premiere Pro 아이콘" class="skill_icon">
+                            <ul>
+                                <li>&middot; 컷 편집 / 자막</li>
+                                <li>&middot; 색 보정 기초</li>
+                            </ul>
+                        </div>
+                        <div class="skill_card down">
+                            <span>After Effects</span>
+                            <img src="./img/ico_after_effects_d.png" alt="After Effects 아이콘" class="skill_icon">
+                            <ul>
+                                <li>&middot; 텍스트 모션</li>
+                                <li>&middot; 기본 애니메이션</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Works -->
+        <section id="works" class="works">
+            <div class="work work-1">
+                <div class="leftArea">
+                    <div class="workTopBox">
+                        <div class="tags">
+                            <span>ALL PAGES</span>
+                            <span>PC</span>
+                            <span>TABLET</span>
+                            <span>MOBILE</span>
+                        </div>
+                        <div class="value">
+                            <div class="valueBox">
+                                <p>기여도</p>
+                                <strong>100%</strong>
+                            </div>
+                            <div class="valueBox">
+                                <p>제작기간</p>
+                                <strong>3 Days</strong>
+                            </div>
+                        </div>
+                        <div class="languages">
+                            <div class="graph">
+                                <div class="html w1"></div>
+                                <div class="css w1"></div>
+                                <div class="javascript w1"></div>
+                            </div>
+                            <ul class="lang_title">
+                                <li><span class="circle h"></span><strong>HTML</strong>52%</li>
+                                <li><span class="circle c"></span><strong>CSS</strong>43%</li>
+                                <li><span class="circle j"></span><strong>JavaScript</strong>5%</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="workTitleArea">
+                        <p class="branch">Clone Coding</p>
+                        <p class="subTitle">Monograph Communications</p>
+                    </div>
+                    <p class="aboutWork">
+                        PC·태블릿·모바일까지 대응하는 반응형 웹으로 클론코딩 했습니다.<br>
+                        메인부터 서브까지 모든 화면을 직접 구현하며 레이아웃과 구조를 재현했고, 열리고 닫히는 탭 메뉴나 ‘Contact’ 페이지의 입력값 검증 안내 문구 등 기본적인 인터랙션도
+                        적용했습니다.<br>
+                        이 작업을 통해 반응형 구조와 페이지 전반의 흐름을 이해하며 퍼블리싱 완성도를 높일 수 있었습니다.
+                    </p>
+                    <div class="btnArea">
+                        <a href="https://hangw1231.github.io/Clone-Monograph/" class="liveDemo" target="_blank">Live Demo</a>
+                        <a href="" class="notion">Project Report</a>
+                    </div>
+                </div>
+                <div class="rightArea mono">
+                    <figure>
+                        <img src="./img/screenshot_monograph.png" alt="Monograph 스크린샷">
+                    </figure>
+                    <figure>
+                        <img src="./img/screenshot_monograph02.png" alt="Monograph 스크린샷">
+                    </figure>
+                </div>
+            </div>
+            <div class="work work-2">
+                <div class="leftArea">
+                    <div class="workTopBox">
+                        <div class="tags">
+                            <span>ALL PAGES</span>
+                            <span>MOBILE</span>
+                        </div>
+                        <div class="value">
+                            <div class="valueBox">
+                                <p>기여도</p>
+                                <strong>100%</strong>
+                            </div>
+                            <div class="valueBox">
+                                <p>제작기간</p>
+                                <strong>5 Days</strong>
+                            </div>
+                        </div>
+                        <div class="languages">
+                            <div class="graph">
+                                <div class="javascript w2"></div>
+                                <div class="css w2"></div>
+                                <div class="html w2"></div>
+                            </div>
+                            <ul class="lang_title">
+                                <li><span class="circle j"></span><strong>JavaScript</strong>68%</li>
+                                <li><span class="circle c"></span><strong>CSS</strong>30%</li>
+                                <li><span class="circle h"></span><strong>HTML</strong>2%</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="workTitleArea">
+                        <p class="branch">React</p>
+                        <p class="subTitle">SmashMatch</p>
+                    </div>
+                    <p class="aboutWork">
+                        SmashMatch는 배드민턴 경기 정보를 쉽고 직관적으로 확인할 수 있는 앱을 만들고자 기획부터 디자인, 개발까지 전 과정을 직접 수행한 리액트 프로젝트입니다.<br>
+                        웹 사이트가 아닌 앱 구조를 기반으로 사용자 흐름을 먼저 설계하고, 모바일 환경에 최적화된 정보 배치와 터치 기반 사용성을 고려해 UI를 구성했습니다.<br>
+                        db.json을 활용한 데이터 로딩, 컴포넌트 구조화, 페이지 라우팅 등 리액트의 기본 시스템을 실습하고 구현하는 데 집중했습니다.
+                    </p>
+                    <div class="btnArea">
+                        <a href="https://hangw1231.github.io/SmashMatch/" class="liveDemo" target="_blank">Live Demo</a>
+                        <a href="" class="notion">Project Report</a>
+                    </div>
+                </div>
+                <div class="rightArea smash">
+                    <figure>
+                        <img src="./img/smashmatch_iphone01.png" alt="SmashMatch 스크린샷">
+                    </figure>
+                    <figure>
+                        <img src="./img/smashmatch_iphone02.png" alt="SmashMatch 스크린샷">
+                    </figure>
+                </div>
+            </div>
+            <div class="work work-3">
+                <div class="leftArea">
+                    <div class="workTopBox">
+                        <div class="tags">
+                            <span>MAIN PAGES</span>
+                            <span>PC</span>
+                        </div>
+                        <div class="value">
+                            <div class="valueBox">
+                                <p>기여도</p>
+                                <strong>100%</strong>
+                            </div>
+                            <div class="valueBox">
+                                <p>제작기간</p>
+                                <strong>5 Days</strong>
+                            </div>
+                        </div>
+                        <div class="languages">
+                            <div class="graph">
+                                <div class="html w3"></div>
+                                <div class="css w3"></div>
+                                <div class="javascript w3"></div>
+                            </div>
+                            <ul class="lang_title">
+                                <li><span class="circle h"></span><strong>HTML</strong>71%</li>
+                                <li><span class="circle c"></span><strong>CSS</strong>22%</li>
+                                <li><span class="circle j"></span><strong>JavaScript</strong>7%</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="workTitleArea">
+                        <p class="branch">Website Renewal</p>
+                        <p class="subTitle">lululemon</p>
+                    </div>
+                    <p class="aboutWork">
+                        룰루레몬 메인 페이지를 보다 역동적인 사용자 경험으로 개선하기 위해 리뉴얼 디자인과 퍼블리싱을 진행한 프로젝트입니다.<br>
+                        정적인 기존 구조를 보완하기 위해 스크롤 시 변형되는 헤더에 탭 메뉴를 더하고, 상품과 캠페인 콘텐츠는 커스텀 슬라이드와 Swiper.js를 활용해 움직임이 살아있는 구조로
+                        재배치했습니다. 또한, 인플루언서 상품 리뷰 섹션은 CSS Grid 기반으로 구성해 다양한 이미지가 자연스럽게 배열되도록 구현했습니다.
+                    </p>
+                    <div class="btnArea">
+                        <a href="https://hangw1231.github.io/Renewal-lululemon/" class="liveDemo" target="_blank">Live Demo</a>
+                        <a href="" class="notion">Project Report</a>
+                    </div>
+                </div>
+                <div class="rightArea lulu">
+                    <figure>
+                        <img src="./img/screenshot_lululemon.png" alt="lululemon 스크린샷">
+                    </figure>
+                    <ul class="luluLogoArea">
+                        <li>
+                            <span class="logo">lululemon</span>
+                            <img src="./img/lululemon_logo.png" alt="simbol" class="simbol">
+                        </li>
+                        <li>
+                            <span class="logo">lululemon</span>
+                            <img src="./img/lululemon_logo.png" alt="simbol" class="simbol">
+                        </li>
+                        <li>
+                            <span class="logo">lululemon</span>
+                            <img src="./img/lululemon_logo.png" alt="simbol" class="simbol">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Project -->
+        <section id="teamProject">
+            <div class="safari">
+                <div class="titleBar"></div>
+                <div class="teamTitleArea">
+                    <p class="branch">Team Project : 영상을 활용한 웹사이트 제작</p>
+                    <div class="titleBox">
+                        <p class="subTitle">레트로 인포 아카이브 플랫폼</p>
+                        <div class="tags">
+                            <span>ALL PAGES</span>
+                            <span>PC</span>
+                        </div>
+                    </div>
+                    <p class="aboutWork">
+                        4개의 카테고리로 레트로에 대한 정보 제공하며, 과거와 현재를 잇는 역할을 하는 디지털 문화 플랫폼 웹사이트를 기획 및 제작하였습니다.
+                    </p>
+                </div>
+                <div class="contents">
+                    <div class="teamLeftArea">
+                        <div class="value team">
+                            <div class="valueBox cont">
+                                <p>기여도</p>
+                                <strong>40%</strong>
+                            </div>
+                            <div class="flexBox">
+                                <div class="valueBox">
+                                    <p>역할</p>
+                                    <strong>Team Leader</strong>
+                                </div>
+                                <div class="valueBox">
+                                    <p>제작기간</p>
+                                    <strong>1 Month</strong><small>2025.07.25~2025.08.24</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contribution">
+                            <h4>Contribution</h4>
+                            <ul>
+                                <li>&middot; 메인페이지 인트로 영상 제작</li>
+                                <li>&middot; FASHION 페이지 디자인 & 퍼블리싱</li>
+                                <li>&middot; 자동 슬라이드 / 테스트 UI / 포토 슬라이드 인터랙션 구현</li>
+                            </ul>
+                        </div>
+                        <div class="tools">
+                            <h4>Tools & Technologies</h4>
+                            <ul class="toolList">
+                                <li><img src="./img/ico_html.png" alt="html"></li>
+                                <li><img src="./img/ico_css.png" alt="css"></li>
+                                <li><img src="./img/ico_javascript.png" alt="javascript"></li>
+                                <li><img src="./img/ico_figma.png" alt="figma"></li>
+                                <li><img src="./img/ico_premiere_pro.png" alt="premiere pro"></li>
+                                <li><img src="./img/ico_after_effects.png" alt="after effects"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="teamRightArea">
+                        <figure>
+                            <img src="./img/screenshot_retro.png" alt="retro.kr 메인페이지 스크린샷">
+                        </figure>
+                        <div class="btnArea">
+                            <a href="https://hangw1231.github.io/project-retro/" class="liveDemo" target="_blank">Live Demo</a>
+                            <a href="" class="notion">Project Report</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- DesignWork -->
+        <section id="designWork">
+            <div class="innerBox">
+                <h2>Design Works</h2>
+                <p>*이미지 클릭 시 더 자세하게 확인하실 수 있습니다.</p>
+                <div class="tabArea">
+                    <button class="tab-btn is-active" role="tab" aria-selected="true"
+                        data-target="ps">Photoshop</button>
+                    <button class="tab-btn" role="tab" aria-selected="false" data-target="figma">Figma</button>
+                </div>
+                <div class="workStage">
+                    <!-- Photoshop -->
+                    <div class="panel is-active" id="panel-ps">
+                        <ul class="grid">
+                            <li class="card" data-full="img/design01.png">
+                                <img src="img/design01.png" alt="Photoshop 01">
+                                <p class="hoverText" hidden>포토샵을 활용하여 제작한 인스타그램 게시글 광고 이미지 입니다.</p>
+                            </li>
+                            <li class="card" data-full="img/design02.png">
+                                <img src="img/design02.png" alt="Photoshop 02">
+                                <p class="hoverText" hidden>포토샵을 활용하여 제작한 배너 광고 이미지 입니다.</p>
+                            </li>
+                            <li class="card" data-full="img/design03.png">
+                                <img src="img/design03.png" alt="Photoshop 03">
+                                <p class="hoverText" hidden>포토샵을 활용하여 제작한 이메일 광고 이미지 입니다.</p>
+                            </li>
+                        </ul>
+
+                        <!-- mobile -->
+                        <div class="carousel" aria-label="Photoshop carousel">
+                            <figure class="slide" data-full="img/design01.png"><img src="img/design01.png"
+                                    alt="Photoshop 01"></figure>
+                            <figure class="slide" data-full="img/design02.png"><img src="img/design02.png"
+                                    alt="Photoshop 02"></figure>
+                            <figure class="slide" data-full="img/design03.png"><img src="img/design03.png"
+                                    alt="Photoshop 03"></figure>
+                        </div>
+                    </div>
+
+                    <!-- Figma -->
+                    <div class="panel" id="panel-figma">
+                        <div class="grid">
+                            <a href="https://www.figma.com/proto/QnZfp1YkNjAkt3LVMoVFQg/SmashMatch?node-id=14-342&starting-point-node-id=14%3A342&t=fL8ZGSOz4By9qi8i-1"
+                                class="card wf" target="_blank" rel="noopener noreferrer">
+                                <img src="img/design04.png" alt="Figma 01">
+                                <p class="hoverText" hidden>배드민턴 대회 운영 앱 디자인 와이어프레임 입니다.</p>
+                            </a>
+
+                            <a href="https://www.figma.com/proto/PFu0AFEuaFfPei0M2368Yt/Team-Project_Fashion-Wireframe?node-id=2-36&t=hemzWCTLA70o0cgW-1"
+                                class="card wf" target="_blank" rel="noopener noreferrer">
+                                <img src="img/design05.png" alt="Figma 02">
+                                <p class="hoverText" hidden>"팀 프로젝트: 레트로 인포 아카이브 웹사이트 제작" 시 제가 맡았던 페이지의 와이어프레임 입니다.</p>
+                            </a>
+
+                            <a href="https://www.figma.com/proto/LFZx5INraViGJOOkTuav31/Portfolio-Wire-Frame--2025-?page-id=0%3A1&node-id=1-6&p=f&viewport=290%2C106%2C0.09&t=iAfaZoagNrkc9tX7-1&scaling=scale-down&content-scaling=fixed"
+                                class="card wf" target="_blank" rel="noopener noreferrer">
+                                <img src="img/design06.png" alt="Figma 03">
+                                <p class="hoverText" hidden>개인 포트폴리오 hue. 웹사이트 제작 시 제작한 와이어프레임 입니다.</p>
+                            </a>
+
+                            <a href="https://www.figma.com/proto/hJ9Jw6WKg1gMvitqPu2hpw/lululemon-Renewal-Project?node-id=1-3&t=A5Dk3rYKXilqp0O7-1"
+                                class="card wf" target="_blank" rel="noopener noreferrer">
+                                <img src="img/design07.png" alt="Figma Work 04">
+                                <p class="hoverText" hidden>스포츠웨어 브랜드 룰루레몬(lululemon) 웹사이트 리뉴얼 작업 시 제작한 와이어프레임 입니다.</p>
+                            </a>
+                        </div>
+
+                        <!-- mobile -->
+                        <div class="carousel" aria-label="Figma carousel">
+                            <a href="https://www.figma.com/proto/QnZfp1YkNjAkt3LVMoVFQg/SmashMatch?node-id=14-342&starting-point-node-id=14%3A342&t=fL8ZGSOz4By9qi8i-1"
+                                class="slide" target="_blank" rel="noopener noreferrer"><img src="img/design04.png"
+                                    alt="Figma 01"></a>
+                            <a href="https://www.figma.com/proto/PFu0AFEuaFfPei0M2368Yt/Team-Project_Fashion-Wireframe?node-id=2-36&t=hemzWCTLA70o0cgW-1"
+                                class="slide" target="_blank" rel="noopener noreferrer"><img src="img/design05.png"
+                                    alt="Figma 02"></a>
+                            <a href="https://www.figma.com/design/LFZx5INraViGJOOkTuav31/Portfolio-Wire-Frame--2025-?node-id=1-6&t=jp3q79KykVfu3pG4-1"
+                                class="slide" target="_blank" rel="noopener noreferrer"><img src="img/design06.png"
+                                    alt="Figma 03"></a>
+                            <a href="https://www.figma.com/proto/hJ9Jw6WKg1gMvitqPu2hpw/lululemon-Renewal-Project?node-id=1-3&t=A5Dk3rYKXilqp0O7-1"
+                                class="slide" target="_blank" rel="noopener noreferrer"><img src="img/design07.png"
+                                    alt="Figma Work 04"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 모달(원본 보기) -->
+                <div class="lightbox" hidden role="dialog" aria-modal="true" aria-label="이미지 미리보기">
+                    <button class="close" type="button" aria-label="Close">✕</button>
+                    <img class="full" alt="">
+                </div>
+            </div>
+        </section>
+
+        <!-- contact -->
+        <section id="contact">
+            <div class="innerBox">
+                <h2>Contact</h2>
+                <div class="textArea">
+                    <div class="information">
+                        <p class="subTitle">Han Jiwon</p>
+                        <dl>
+                            <div>
+                                <dt>E-mail</dt>
+                                <dd><a href="mailto:hangw1231@naver.com">Mail me →</a></dd>
+                            </div>
+                            <div>
+                                <dt>GitHub</dt>
+                                <dd><a href="https://github.com/hangw1231" target="_blank">
+                                        <img id="icoGitHub" src="./img/ico_github.png" alt="GitHub로 이동">
+                                    </a>
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <p class="lastText">
+                        빠르게 흡수하고 깊이 있게 몰입하며, <span>감각 있는 결과로 보답하겠습니다.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- nav_moblie -->
+        <div class="mobile">
+            <ul class="nav">
+                <li><a href="#about">About</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <img src="img/ico_menu.png" alt="모바일메뉴" id="icoMenu">
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+  --bg: #000;
+  --teal: #1f6772;        /* pill 컬러 */
+  --tealText: #62b6c0;    /* 타이틀 컬러 */
+  --rowH: 64px;           /* li 한 줄 높이(필수) */
+  --pillH: 64px;
+  --radius: 999px;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin:0;
+  background: var(--bg);
+  font-family: system-ui, -apple-system, "Pretendard", sans-serif;
+  color:#cfcfcf;
+}
+
+.identify-card{
+  width: min(680px, 92vw);
+  margin: 80px auto;
+  text-align:center;
+}
+
+.title{
+  margin: 0 0 22px;
+  font-size: clamp(26px, 4vw, 44px);
+  color: var(--tealText);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* 자동 스크롤 영역 */
+.roller{
+  position: relative;
+  height: calc(var(--rowH) * 3); /* 위/중앙/아래 3줄 보이게 */
+  overflow: hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* 중앙 청록 pill (고정) */
+.pill{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+  width: min(560px, 92%);
+  height: var(--pillH);
+  border-radius: var(--radius);
+  background: var(--teal);
+  box-shadow: 0 10px 18px rgba(0,0,0,.35);
+  z-index: 0;
+}
+
+/* 리스트 트랙 */
+.keywords{
+  list-style:none;
+  margin:0;
+  padding:0;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+}
+
+.word{
+  height: var(--rowH);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 18px;
+  opacity: .35;
+  transform: scale(0.98);
+  transition: opacity .35s ease, transform .35s ease, color .35s ease;
+}
+
+.word strong{
+  font-weight: 800;
+  font-size: clamp(18px, 3.3vw, 28px);
+  color:#a9a9a9;
+}
+
+.word span{
+  font-weight: 500;
+  font-size: clamp(14px, 2.6vw, 20px);
+  color:#8f8f8f;
+}
+
+/* pill에 들어온(활성) 단어 */
+.word.is-active{
+  opacity: 1;
+  transform: scale(1);
+}
+.word.is-active strong,
+.word.is-active span{
+  color: #fff;
+}
+
+/* 위/아래 단어는 조금 더 흐리게 */
+.word.is-near{
+  opacity: .5;
+}
+
+/* ---- inner-shadow(가림 효과) ----
+   roller 위/아래에 내부 그림자 + 페이드 마스크 느낌을 얹어서
+   pill 밖 글자가 살짝 가려지는 느낌 만들기
+*/
+.roller::before,
+.roller::after{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  height: 38%;
+  pointer-events:none;
+  z-index: 2; /* 글자 위에 덮여야 가려짐 */
+}
+
+.roller::before{
+  top:0;
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,.95),
+    rgba(0,0,0,.65),
+    rgba(0,0,0,0)
+  );
+  box-shadow: inset 0 28px 40px rgba(0,0,0,.95);
+}
+
+.roller::after{
+  bottom:0;
+  background: linear-gradient(to top,
+    rgba(0,0,0,.95),
+    rgba(0,0,0,.65),
+    rgba(0,0,0,0)
+  );
+  box-shadow: inset 0 -28px 40px rgba(0,0,0,.95);
+}
+
+    </style>
+</head>
+<body>
+    <section class="identify-card">
+  <h3 class="title">Design Identify</h3>
+
+  <div class="roller" id="roller">
+    <div class="pill" aria-hidden="true"></div>
+
+    <ul class="keywords" id="keywords">
+      <li class="word"><strong>Aesthetic</strong><span>감각적인</span></li>
+      <li class="word"><strong>Intuitive</strong><span>직관적인</span></li>
+      <li class="word"><strong>On-trend</strong><span>트렌디한</span></li>
+      <li class="word"><strong>Subtle</strong><span>차분한</span></li>
+      <li class="word"><strong>Minimal</strong><span>미니멀한</span></li>
+      <li class="word"><strong>Functional</strong><span>기능적인</span></li>
+    </ul>
+  </div>
+</section>
+
+<script>
+  const roller = document.getElementById('roller');
+  const ul = document.getElementById('keywords');
+  const items = Array.from(ul.querySelectorAll('.word'));
+
+  const ROW_H = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--rowH')) || 64;
+  const STAY = 1800;     // 각 위치 머무는 시간(ms) - 취향대로
+  const MOVE_DUR = 520;  // 이동 애니메이션 시간(ms)
+  
+  // 끊김 없는 무한을 위해: 전체 아이템을 한 번 더 복제해 뒤에 붙임
+  items.forEach(li => ul.appendChild(li.cloneNode(true)));
+
+  const all = Array.from(ul.querySelectorAll('.word'));
+  const originCount = items.length; // 6
+  let idx = 0;
+
+  function setActive(i){
+    all.forEach(el => el.classList.remove('is-active','is-near'));
+
+    // 가운데에 들어올 “원본 인덱스” 계산
+    const center = i % originCount;
+
+    // 같은 인덱스(클론 포함) 모두에 클래스 부여(룰렛처럼 계속 보이게)
+    all.forEach((el, k) => {
+      const n = k % originCount;
+      if (n === center) el.classList.add('is-active');
+      if (n === (center + 1) % originCount) el.classList.add('is-near');
+      if (n === (center - 1 + originCount) % originCount) el.classList.add('is-near');
+    });
+  }
+
+  // 시작: 중앙에 2번째가 오도록(이미지처럼 Intuitive)
+  idx = 1;
+  ul.style.transform = `translateY(${-idx * ROW_H}px)`;
+  setActive(idx);
+
+  let timer = null;
+
+  function step(){
+    // 이동 애니메이션
+    ul.style.transition = `transform ${MOVE_DUR}ms ease`;
+    idx += 1;
+    ul.style.transform = `translateY(${-idx * ROW_H}px)`;
+    setActive(idx);
+
+    // 마지막(원본 6개)까지 이동했으면, 클론 구간에서 자연스럽게 넘어간 뒤
+    // transition 끄고 원점으로 순간 점프해서 “끊김 없는” 루프 완성
+    if (idx === originCount) {
+      setTimeout(() => {
+        ul.style.transition = 'none';
+        idx = 0;
+        ul.style.transform = `translateY(0px)`;
+        setActive(idx);
+        // reflow
+        void ul.offsetWidth;
+      }, MOVE_DUR + 20);
+    }
+
+    timer = setTimeout(step, STAY);
+  }
+
+  // 첫 이동 시작
+  timer = setTimeout(step, STAY);
+</script>
+
+</body>
+</html>
