@@ -28,6 +28,29 @@ h2 {
     width: 168px;
 }
 
+.swipeHide {
+    display: block;
+    font-size: 14px;
+    font-weight: 200;
+    text-align: center;
+}
+
+@keyframes arrowMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(6px);
+    }
+}
+
+.swipeHide span {
+    display: inline-block;
+    margin-left: 4px;
+    animation: arrowMove 0.8s ease-in-out infinite alternate;
+}
+
 
 /* header */
 header {
@@ -104,71 +127,79 @@ header nav {
     flex-direction: column;
 }
 
-.identifyList {
-    position: relative;
-    width: 250px;
-    height: 120px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.identifyList::before,
-.identifyList::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0;
-    width: 100%;
-    height: 15%;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.identifyList::after {
-    top: -20px;
-    box-shadow: 0 12px 30px rgba(255,255,255,0.9);
-}
-
-.identifyList::before {
-    bottom: -20px;
-    box-shadow: 0 -12px 30px rgba(255,255,255,0.9);
-}
-
 .identify {
+    width: min(350px, 90vw);
+    padding: 0 20px;
     border: none;
 }
 
-.identify h3 {
-    margin-bottom: 20px;
-}
-
-.keywords {
+.viewport {
     position: relative;
-    z-index: 1;
-    will-change: transform;
+    height: 130px;
+    overflow: hidden;
 }
 
-.word_box {
-    height: 40px;
-    align-items: center;
-    justify-content: center;
-    transform: scale(0.98);
-    transition: transform 0.4s ease;
+.viewport::before,
+.viewport::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 3;
+    pointer-events: none;
 }
 
-.word_box.is-active {
-    transform: scale(1);
+.viewport::before {
+    top: 0;
+    background: linear-gradient(to bottom,
+            #fff 0%,
+            rgba(255, 255, 255, 0) 100%);
+}
+
+.viewport::after {
+    bottom: 0;
+    background: linear-gradient(to top,
+            #fff 0%,
+            rgba(255, 255, 255, 0) 100%);
 }
 
 .highlight {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: none;
+    inset: 50%;
+    margin: auto;
     width: 250px;
     height: 40px;
+    background: var(--accent02);
+    border-radius: 50px;
+    z-index: 1;
+    opacity: 1;
+}
+
+.keywords {
+    position: relative;
+    z-index: 2;
+    will-change: transform;
+}
+
+.word_box {
+    width: 100%;
+    opacity: 0.5;
+    filter: blur(0.6px);
+    transition: all 400ms ease;
+    justify-content: center;
+}
+
+.word_box.is-active {
+    color: var(--white);
+    opacity: 1;
+    filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .highlight {
+        transition: none;
+    }
 }
 
 .my_story .name {
@@ -181,9 +212,26 @@ header nav {
     text-align: center;
 }
 
+.skills h2 {
+    margin-bottom: 10px;
+}
+
 .skill_box {
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(10, 180px);
+    grid-template-rows: 1fr;
+    justify-content: start;
+    padding: 12px 0 20px;
+    overflow: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.skill_card {
+    touch-action: pan-y;
+}
+
+.skill_card.down:hover {
+    transform: translateY(-10px);
 }
 
 
@@ -195,7 +243,8 @@ header nav {
     gap: 0;
 }
 
-#works .work, body.dark #works .work {
+#works .work,
+body.dark #works .work {
     position: unset;
     width: 100%;
     height: 100vh;
@@ -206,24 +255,27 @@ header nav {
     color: var(--white);
 }
 
-#works .work.work-1, body.dark #works .work.work-1 {
+#works .work.work-1,
+body.dark #works .work.work-1 {
     background:
-        linear-gradient(rgba(0, 0, 0, 0.6),
-            rgba(0, 0, 0, 0.6)),
+        linear-gradient(rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)),
         url(../img/screenshot_monograph.png) no-repeat top/cover;
 }
 
-#works .work.work-2, body.dark #works .work.work-2 {
+#works .work.work-2,
+body.dark #works .work.work-2 {
     background:
-        linear-gradient(rgba(0, 0, 0, 0.6),
-            rgba(0, 0, 0, 0.6)),
+        linear-gradient(rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)),
         url(../img/smashmatch_iphone01.png) no-repeat center/contain;
 }
 
-#works .work.work-3, body.dark #works .work.work-3 {
+#works .work.work-3,
+body.dark #works .work.work-3 {
     background:
-        linear-gradient(rgba(0, 0, 0, 0.6),
-            rgba(0, 0, 0, 0.6)),
+        linear-gradient(rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)),
         url(../img/screenshot_lululemon.png) no-repeat top/cover;
 }
 
@@ -238,17 +290,22 @@ header nav {
 
 
 /* teamProject */
-#teamProject, body.dark #teamProject {
+#teamProject,
+body.dark #teamProject {
     background:
-        linear-gradient(rgba(0,0,0, 0.4),
-            rgba(0,0,0, 0.4)),
+        linear-gradient(rgba(0, 0, 0, 0.1),
+            rgba(0, 0, 0, 0.1)),
         url(../img/bg_teamProject_mobile.png) no-repeat center/cover;
 }
 
-.safari, body.dark .safari {
+.safari,
+body.dark .safari {
     margin: auto;
     width: 100%;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background: none;
     border-radius: 0;
     box-shadow: none;
@@ -259,7 +316,7 @@ header nav {
 }
 
 .teamTitleArea {
-    padding: 25px 25px 15px;
+    padding: 25px 25px 20px;
     background: none;
 }
 
@@ -281,7 +338,7 @@ header nav {
 .contents {
     flex-direction: column;
     gap: 15px;
-    padding: 0 25px;
+    padding: 0 25px 25px;
 }
 
 .teamLeftArea {
@@ -348,6 +405,7 @@ header nav {
     padding-bottom: 8px;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    margin-bottom: 20px;
 }
 
 #designWork .carousel::-webkit-scrollbar {
@@ -358,6 +416,7 @@ header nav {
     scroll-snap-align: center;
     height: 500px;
     overflow: hidden;
+    border-radius: 20px;
 }
 
 #designWork .slide img {
@@ -467,4 +526,18 @@ body.dark header {
 /* nav */
 body.dark .mobile .nav {
     background: rgba(0, 0, 0, 0.7);
+}
+
+body.dark .viewport::before {
+    top: 0;
+    background: linear-gradient(to bottom,
+            #000 0%,
+            rgba(0, 0, 0, 0) 100%);
+}
+
+body.dark .viewport::after {
+    bottom: 0;
+    background: linear-gradient(to top,
+            #000 0%,
+            rgba(0, 0, 0, 0) 100%);
 }

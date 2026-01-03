@@ -8,6 +8,7 @@ window.addEventListener('scroll', function () {
   }
 });
 
+
 /* banner */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -20,6 +21,7 @@ const observer = new IntersectionObserver((entries) => {
   threshold: 0.1
 });
 document.querySelectorAll('.textArea').forEach((el) => observer.observe(el));
+
 
 /* 다크모드 아이콘 컬러 전환 */
 const toggleBtn = document.getElementById('toggleTheme');
@@ -36,121 +38,188 @@ toggleBtn.addEventListener('click', () => {
   icoGitHub.src = isDark ? 'img/ico_github_d.png' : 'img/ico_github.png';
 });
 
+
 /* design identify */
-const items = document.querySelectorAll('.word_box');
-const highlight = document.getElementById('highlight');
+const list = document.getElementById("keyWords");
+const highlight = document.querySelector(".highlight");
 
-const stayTime = 3000;
-let index = 0;
-let positions = [];
-
-function calcPositions() {
-  positions = Array.from(items).map(item => {
-    const top = item.offsetTop;
-    const height = item.offsetHeight;
-    const hHeight = highlight.offsetHeight || 56;
-    return top + (height / 2) - (hHeight / 2);
-  });
-}
-
-function moveTo(index) {
-  items.forEach(i => i.classList.remove('is-active'));
-  items[index].classList.add('is-active');
-
-  highlight.style.opacity = 1;
-  highlight.style.transform = `translate(-50%, ${positions[index]}px)`;
-}
-
-function startLoop() {
-  calcPositions();
-  let current = 0;
-
-  moveTo(current);
-
-  setInterval(() => {
-    if (current === items.length - 1) {
-
-      setTimeout(() => {
-        highlight.style.transition = 'none';
-        moveTo(0);
-
-        void highlight.offsetWidth;
-
-        highlight.style.transition =
-          'transform 0.5s ease, opacity 0.4s ease';
-
-        current = 0;
-      }, 600);
-    } else {
-      current++;
-      moveTo(current);
-    }
-  }, stayTime);
-}
-
-setTimeout(startLoop, 100);
-window.addEventListener('resize', calcPositions);
-
-/* ✅ 모바일(768px 이하)에서만 실행 */
-/* if (!window.matchMedia('(max-width: 768px)').matches) return;
-
-const identifyList = document.getElementById('identifyList');
-const ul = document.getElementById('keywords');
-const item = Array.from(ul.querySelectorAll('.word_box'));
-
-const ROW_H = parseFloat(
-  getComputedStyle(document.documentElement).getPropertyValue('40px')
-) || 40;
-
-const STAY = 1800;     // 머무는 시간(ms)
-const MOVE_DUR = 520; // 이동 애니메이션(ms) */
-
-/* 끊김 없는 무한 루프를 위해 li 복제 */
-/* item.forEach(li => ul.appendChild(li.cloneNode(true)));
-
-const all = Array.from(ul.querySelectorAll('.word_box'));
-const originCount = item.length; // 6
-let idx = 0;
-
-function setActive(i) {
-  all.forEach(el => el.classList.remove('is-active'));
-
-  const center = i % originCount;
-
-  all.forEach((el, k) => {
-    const n = k % originCount;
-    if (n === center) el.classList.add('is-active');
-  });
-} */
-
-/* 시작 위치 (이미지처럼 Intuitive가 중앙) */
-/* idx = 1;
-ul.style.transform = `translateY(${-idx * ROW_H}px)`;
-setActive(idx);
+const mqMobile = window.matchMedia("(max-width: 768px)");
 
 let timer = null;
+let positions = [];
+let index = 0;
 
-function step() {
-  ul.style.transition = `transform ${MOVE_DUR}ms ease`;
-  idx += 1;
-  ul.style.transform = `translateY(${-idx * ROW_H}px)`;
-  setActive(idx); */
+const stayTime = 2600;
+const moveDuration = 600;
 
-  /* 클론 영역 진입 시 순간 점프 */
-  /* if (idx === originCount) {
-    setTimeout(() => {
-      ul.style.transition = 'none';
-      idx = 0;
-      ul.style.transform = `translateY(0px)`;
-      setActive(idx);
-      void ul.offsetWidth; // reflow
-    }, MOVE_DUR + 20);
+function cleanup() {
+  if (timer) clearInterval(timer);
+  timer = null;
+  index = 0;
+
+  list.querySelectorAll(".word_box").forEach(li => li.classList.remove("is-active"));
+
+  if (list.dataset.cloned === "1") {
+    const originalCount = Number(list.dataset.originalCount || 0);
+    const items = Array.from(list.children);
+    items.slice(originalCount).forEach(node => node.remove());
+    delete list.dataset.cloned;
+    delete list.dataset.originalCount;
   }
 
-  timer = setTimeout(step, STAY);
+  list.style.transition = "none";
+  list.style.transform = "translateY(0px)";
+  highlight.style.transition = "";
+  highlight.style.opacity = 0;
+  highlight.style.transform = "translateX(-50%)";
 }
 
-timer = setTimeout(step, STAY); */
+function initWeb() {
+  const items = Array.from(list.querySelectorAll(".word_box"));
+
+  function calcPositions() {
+    const hH = highlight.offsetHeight || 40;
+    positions = items.map((item) => {
+      const top = item.offsetTop;
+      const h = item.offsetHeight;
+      return top + (h / 2) - (hH / 2);
+    });
+  }
+
+  function moveTo(i, withTransition = true) {
+    items.forEach(el => el.classList.remove("is-active"));
+    items[i].classList.add("is-active");
+
+    if (!withTransition) highlight.style.transition = "none";
+    else highlight.style.transition = `transform ${moveDuration}ms ease, opacity 300ms ease`;
+
+    highlight.style.opacity = 1;
+    highlight.style.transform = `translate(-50%, ${positions[i]}px)`;
+
+    if (!withTransition) {
+      void highlight.offsetWidth;
+      highlight.style.transition = `transform ${moveDuration}ms ease, opacity 300ms ease`;
+    }
+  }
+
+  calcPositions();
+  moveTo(0);
+
+  timer = setInterval(() => {
+    index += 1;
+
+    if (index >= items.length) {
+      index = 0;
+      moveTo(0, false);
+    } else {
+      moveTo(index, true);
+    }
+  }, stayTime);
+
+  window.addEventListener("resize", () => {
+    calcPositions();
+    moveTo(index, false);
+  }, { passive: true });
+}
+
+// 모바일 버전
+function initMobile() {
+  const originalItems = Array.from(list.querySelectorAll(".word_box"));
+  const originalCount = originalItems.length;
+
+  originalItems.forEach(li => list.appendChild(li.cloneNode(true)));
+  list.dataset.cloned = "1";
+  list.dataset.originalCount = String(originalCount);
+
+  const items = Array.from(list.querySelectorAll(".word_box"));
+
+  function setActive(i) {
+    items.forEach(el => el.classList.remove("is-active"));
+    items[i].classList.add("is-active")
+  }
+
+  function getStep() {
+    const a = items[0];
+    const b = items[1];
+    return b.offsetTop - a.offsetTop;
+  }
+
+  function setActive(i) {
+    items.forEach(el => el.classList.remove("is-active"));
+    items[i].classList.add("is-active");
+  }
+
+  const viewport = document.querySelector(".viewport");
+  const centerY = viewport.clientHeight / 2;
+  const firstItemCenter = items[0].offsetTop + items[0].offsetHeight / 2;
+  const baseOffset = centerY - firstItemCenter;
+
+  let step = getStep();
+
+  function moveTo(i, withTransition = true) {
+    if (withTransition) {
+      list.style.transition = `transform ${moveDuration}ms ease`;
+    } else {
+      list.style.transition = "none";
+    }
+
+    const y = baseOffset - (step * i);
+    list.style.transform = `translateY(${y}px)`;
+
+    setActive(i);
+
+    if (!withTransition) {
+      void list.offsetWidth;
+      list.style.transition = `transform ${moveDuration}ms ease`;
+    }
+  }
+
+  highlight.style.opacity = 1;
+
+  moveTo(0, false);
+
+  timer = setInterval(() => {
+    index += 1;
+
+    if (index >= originalCount + 1) {
+      index = 0;
+      moveTo(0, false);
+      return;
+    }
+
+    moveTo(index, true);
+
+    if (index === originalCount) {
+      setTimeout(() => {
+        index = 0;
+        moveTo(0, false);
+      }, moveDuration + 20);
+    }
+  }, stayTime);
+
+  window.addEventListener("resize", () => {
+    step = getStep();
+
+    const newCenterY = viewport.clientHeight / 2;
+    const newFirstCenter = items[0].offsetTop + items[0].offsetHeight / 2;
+    const newBase = newCenterY - newFirstCenter;
+
+    const y = newBase - (step * index);
+    list.style.transition = "none";
+    list.style.transform = `translateY(${y}px)`;
+    void list.offsetWidth;
+  }, { passive: true });
+}
+
+// ========== 분기 실행 ==========
+function boot() {
+  cleanup();
+  if (mqMobile.matches) initMobile();
+  else initWeb();
+}
+
+boot();
+mqMobile.addEventListener("change", boot);
 
 
 /* work */

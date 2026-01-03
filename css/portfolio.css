@@ -125,6 +125,9 @@ h4 {
     border: 1px solid var(--accent01);
 }
 
+.swipeHide {
+    display: none;
+}
 
 /* header */
 header {
@@ -273,31 +276,28 @@ header.on h1 {
 }
 
 .identify {
-    position: relative;
     padding: 25px;
     border: 1px solid var(--accent01);
     border-radius: 20px;
 }
 
+.viewport {
+    position: relative;
+}
+
 .identify h3 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: var(--accent01);
     text-align: center;
 }
 
-.identifyList {
-    position: relative;
-}
-
 .keywords {
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .word_box {
-    position: relative;
     display: flex;
     gap: 10px;
     width: 190px;
@@ -316,18 +316,16 @@ header.on h1 {
 
 .highlight {
     position: absolute;
-    top: 16.8%;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translateX(-50%);
     width: 100%;
-    max-width: 200px;
     height: 40px;
     border-radius: 50px;
     background: var(--accent02);
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-    z-index: -1;
     opacity: 0;
-    transition: transform 0.5s ease, opacity 0.4s ease;
+    transition: transform 600ms ease, opacity 300ms ease;
+    pointer-events: none;
 }
 
 .my_story .name {
@@ -665,6 +663,7 @@ header.on h1 {
 /* teamProject */
 #teamProject {
     background: url(../img/bg03.png) no-repeat left/cover;
+    color: var(--black);
 }
 
 .safari {
