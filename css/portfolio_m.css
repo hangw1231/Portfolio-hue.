@@ -306,6 +306,7 @@ body.dark .safari {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 50px;
     background: none;
     border-radius: 0;
     box-shadow: none;
@@ -316,7 +317,7 @@ body.dark .safari {
 }
 
 .teamTitleArea {
-    padding: 25px 25px 20px;
+    padding: 0 25px;
     background: none;
 }
 
@@ -337,12 +338,12 @@ body.dark .safari {
 
 .contents {
     flex-direction: column;
-    gap: 15px;
+    gap: 50px;
     padding: 0 25px 25px;
 }
 
 .teamLeftArea {
-    gap: 15px;
+    gap: 50px;
 }
 
 .value.team {
@@ -373,6 +374,10 @@ body.dark .safari {
 }
 
 .tools {
+    display: none;
+}
+
+.teamRightArea figure {
     display: none;
 }
 
