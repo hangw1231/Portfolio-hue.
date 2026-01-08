@@ -495,25 +495,21 @@ body.dark .safari {
 }
 
 .mobile .nav {
+    display: none;
     width: fit-content;
     padding: 30px 25px;
     border: 1px solid #ccc;
     border-radius: 15px;
     margin-bottom: 20px;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 25px;
     background: rgba(255, 255, 255, 0.8);
     font-weight: 500;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s;
 }
 
 .mobile .nav.on {
-    opacity: 1;
-    visibility: visible;
+    display: flex;
 }
 
 .mobile .nav li a.active {

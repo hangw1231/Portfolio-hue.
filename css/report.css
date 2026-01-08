@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+body {
+    background: url(../img/bg03.png) no-repeat top/cover fixed;
+}
+
+.innerBox {
+    padding: 60px 7%;
+    background: rgba(255,255,255,0.5);
+}
+
+section {
+    margin: 50px auto;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #16A1B1;
+}
+
+h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+h4 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+p {
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+img {
+    width: 50%;
+}
+
+table {
+    width: 90%;
+}
+
+table tr {
+    height: 40px;
+}
+
+table th {
+    background: rgba(0,0,0,0.2);
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+table td {
+    padding: 14px 20px;
+    background: rgba(0,0,0,0.1);
+    text-align: center;
+    line-height: 1.5;
+}
+
+.proposal figure {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.proposal figure img {
+    width: clamp(300px, 60vw, 500px);
+    height: auto;
+}
+
+.frame {
+    width: clamp(120px, 50vw, 200px);
+    height: auto;
+}
+
+.box {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.box > div {
+    flex: 1 1;
+    width: 50%;
+}
+
+video {
+    width: 50%;
+}
+
+.development img {
+    width: 40%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.container ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.container ul strong {
+    display: block;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.7;
+}

@@ -27,7 +27,8 @@ document.querySelectorAll('.textArea').forEach((el) => observer.observe(el));
 const toggleBtn = document.getElementById('toggleTheme');
 const themeIcon = document.getElementById('themeIcon');
 const icoMenu = document.getElementById('icoMenu')
-const icoGitHub = document.getElementById('icoGitHub')
+const icoGitHub = document.getElementById('icoGitHub');
+const icoNotion = document.getElementById('icoNotion');
 
 toggleBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark');
@@ -36,6 +37,7 @@ toggleBtn.addEventListener('click', () => {
   themeIcon.src = isDark ? 'img/ico_light.png' : 'img/ico_dark.png';
   icoMenu.src = isDark ? 'img/ico_menu_d.png' : 'img/ico_menu.png';
   icoGitHub.src = isDark ? 'img/ico_github_d.png' : 'img/ico_github.png';
+  icoNotion.src = isDark ? 'img/ico_notion_d.png' : 'img/ico_notion.png';
 });
 
 
